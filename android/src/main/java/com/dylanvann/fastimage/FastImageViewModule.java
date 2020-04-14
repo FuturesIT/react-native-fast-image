@@ -10,6 +10,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.views.imagehelper.ImageSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 class FastImageViewModule extends ReactContextBaseJavaModule {
 
@@ -48,6 +49,8 @@ class FastImageViewModule extends ReactContextBaseJavaModule {
                                     imageSource.isResource() ? imageSource.getUri() : imageSource.getGlideUrl()
                             )
                             .apply(FastImageViewConverter.getOptions(activity, imageSource, source))
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .skipMemoryCache(true)
                             .preload();
                 }
             }
